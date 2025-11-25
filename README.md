@@ -1,3 +1,7 @@
 # testing
 
-Filter, reduce, get, slice, isEmpty, words, toNumber, isDate, defaultTo, map
+Rasmus:
+reduce, get, slice, isEmpty, words
+
+Veeti:
+Filter, toNumber, isDate, defaultTo, map
