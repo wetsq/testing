@@ -9,6 +9,7 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "jest": "^30.2.0"
+  }
 }
