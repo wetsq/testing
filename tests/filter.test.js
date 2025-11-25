@@ -1,34 +1,37 @@
-import { filter } from '../src/filter.js';
+import filter from '../src/filter.js';
 
 describe('filter', () => {
-  it('should filter elements based on the predicate', () => {
+  it('should filter elements based on predicate', () => {
     const users = [
       { user: 'barney', active: true },
-      { user: 'fred', active: false },
-      { user: 'pebbles', active: true },
-    ];
+      { user: 'fred', active: false }
+    ]
 
-    const result = filter(users, ({ active }) => active);
-    expect(result).toEqual([
+    const result = filter(users, ({ active }) => active)
+    expect(result).toEqual([{ user: 'barney', active: true }])
+  })
+
+  it('should return empty array for empty input array', () => {
+    const result = filter([], () => true)
+    expect(result).toEqual([])
+  })
+
+  it('should return empty array if no elements match', () => {
+    const users = [
       { user: 'barney', active: true },
-      { user: 'pebbles', active: true },
-    ]);
-  });
+      { user: 'fred', active: false }
+    ]
+    const result = filter(users, ({ user }) => user === 'ben')
+    expect(result).toEqual([])
+  })
 
-  it('should return an empty array when no elements match the predicate', () => {
-    const numbers = [1, 2, 3, 4, 5];
+  it('should handle null input', () => {
+    const result = filter(null, () => true)
+    expect(result).toEqual([])
+  })
 
-    const result = filter(numbers, (n) => n > 10);
-    expect(result).toEqual([]);
-  });
-
-  it('should handle an empty array', () => {
-    const result = filter([], (n) => n > 0);
-    expect(result).toEqual([]);
-  });
-
-  it('should handle null or undefined array', () => {
-    expect(filter(null, (n) => n > 0)).toEqual([]);
-    expect(filter(undefined, (n) => n > 0)).toEqual([]);
-  });
+  it('should handle undefined input', () => {
+    const result = filter(undefined, () => true)
+    expect(result).toEqual([])
+  })
 });
