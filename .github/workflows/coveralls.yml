@@ -3,12 +3,11 @@ on: ["push", "pull_request"]
 name: Test Coveralls
 
 jobs:
-
   build:
     name: Build
     runs-on: ubuntu-latest
-    steps:
 
+    steps:
     - uses: actions/checkout@v4
 
     - name: Install Node.js
@@ -16,10 +15,12 @@ jobs:
       with:
         node-version: lts/*
 
-    - name: npm install, npm test
+    - name: Install dependencies & run tests
       run: |
         npm install
-        npm test
+        npm test -- --coverage
 
     - name: Coveralls
       uses: coverallsapp/github-action@v2
+      with:
+        github-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
